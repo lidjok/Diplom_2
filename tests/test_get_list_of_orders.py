@@ -18,4 +18,4 @@ class TestGetListOfOders:
     def test_get_order_whithout_auth(self):
         response = requests.get(Url.GET_LIST_OF_ORDERS)
         assert response.status_code == 401
-        assert response.json().get("success") == False, "Получен неверный ответ"
+        assert response.json()['message'] == 'You should be authorised'

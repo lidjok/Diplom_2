@@ -21,4 +21,4 @@ class TestLoginUser:
         payload = data
         response = requests.post(Url.LOGIN_USER, data=payload)
         assert response.status_code == 401
-        assert response.json().get("success") == False, "Получен неверный ответ"
+        assert response.json()['message'] == 'email or password are incorrect'

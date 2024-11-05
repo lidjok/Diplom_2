@@ -32,7 +32,7 @@ class TestCreateOrder:
         response = requests.post(Url.CREATE_ORDER, headers={'Authorization': token},
                                  data=Ingredients.empty_list_of_ingredients)
         assert response.status_code == 400
-        assert response.json()["success"] == False
+        assert response.json()['message'] == 'Ingredient ids must be provided'
 
 
     @allure.title('Невозможно создать заказ c неверным хэшом ингедиентов')
@@ -42,3 +42,4 @@ class TestCreateOrder:
         response = requests.post(Url.CREATE_ORDER, headers={'Authorization': token},
                                  data=Ingredients.wrong_list_of_ingredients_incorrect_hash)
         assert response.status_code == 500
+        assert response.reason == 'Internal Server Error'
